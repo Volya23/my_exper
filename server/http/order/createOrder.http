@@ -5,6 +5,6 @@ Content-Type: application/json
     
     "orderDate": "2020-10-02",
     "status": "new",
-    "productId": [3],
-    "customerId": [4]
+    "productId": [5],
+    "customerId": [2]
 }

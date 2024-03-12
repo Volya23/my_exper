@@ -5,21 +5,17 @@ const productRouter = require('./productRouter');
 
 const OrderController = require ('../controllers/orderController'); 
 
-const { uploadImages } = require('../utils/fileUpload');
-
 
 orderRouter
 .route('/')
-.post(uploadImages, OrderController.createOrder);
+.post(OrderController.createOrder);
 
 orderRouter
 .route('/:orderId')
-.get(OrderController.getOrder)
-.put(uploadImages, OrderController.updateOrder)
 .delete(OrderController.deleteOrder);
 
 
-orderRouter.use('/:customersId', customerRouter);
+orderRouter.use('/:customerId', customerRouter);
 orderRouter.use('/:orderId/products', productRouter);
 
 module.exports = orderRouter;

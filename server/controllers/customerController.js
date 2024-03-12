@@ -72,7 +72,7 @@ module.exports.getCustomerWithOrders = async (req, res, next) => {
     try {
         const {params: {customerId}} = req;
 
-        const customerWithGroups = await Customer.findByPk(customerId, {
+        const customerWithOrders = await Customer.findByPk(customerId, {
             attributes: ['id', 'first_name', 'last_name'],
             include: {
                 model: Order,
@@ -85,9 +85,9 @@ module.exports.getCustomerWithOrders = async (req, res, next) => {
         });
 
         if(!customerWithGroups) {
-            throw new NotFound();
+            return next(createError(404));
         }
-        return res.status(200).send(customerWithGroups);
+        return res.status(200).send(customerWithOrders);
     } catch (error) {
         next(error);
     }
